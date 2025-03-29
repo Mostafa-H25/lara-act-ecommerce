@@ -7,7 +7,7 @@ export default function InputLabel({
   ...props
 }: LabelHTMLAttributes<HTMLLabelElement> & { value?: string }) {
   return (
-    <label {...props} className={`input` + className}>
+    <label {...props} className={` ` + className}>
       <span className="label">{value ? value : children}</span>
     </label>
   );

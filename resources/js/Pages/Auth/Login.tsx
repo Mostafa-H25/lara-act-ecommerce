@@ -32,7 +32,7 @@ export default function Login({
     <AuthenticatedLayout>
       <Head title="Log in" />
       <div className="p-8">
-        <div className="card mx-auto max-w-[420px] bg-white shadow">
+        <div className="card mx-auto max-w-[420px] bg-slate-950 shadow">
           <div className="card-body">
             {status && (
               <div className="mb-4 text-sm font-medium text-green-600">

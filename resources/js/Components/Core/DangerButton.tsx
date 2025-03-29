@@ -9,7 +9,7 @@ export default function DangerButton({
   return (
     <button
       {...props}
-      className={`btn btn-error` + className}
+      className={`btn btn-error ` + className}
       disabled={disabled}
     >
       {children}

@@ -31,7 +31,7 @@ export default forwardRef(function TextInput(
     <input
       {...props}
       type={type}
-      className={'input' + className}
+      className={'input ' + className}
       ref={localRef}
     />
   );
