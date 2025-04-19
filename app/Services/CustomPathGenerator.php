@@ -17,16 +17,21 @@ class CustomPathGenerator implements PathGenerator
 
     public function getPath(Media $media): string
     {
-        return md5($media->id . config("app.key"));
+        // return md5($media->id . config("app.key"));
+        return "media/{$media->id}/";
     }
 
     public function getPathForConversions(Media $media): string
     {
-        return md5($media->id . config("app.key") . "/conversions/");
+        // return md5($media->id . config("app.key") . "/conversions/");
+        return "media/{$media->id}/conversions/";
+
     }
 
     public function getPathForResponsiveImages(Media $media): string
     {
-        return md5($media->id . config("app.key") . "/responsive/");
+        // return md5($media->id . config("app.key") . "/responsive/");
+        return "media/{$media->id}/responsive/";
+
     }
 }
