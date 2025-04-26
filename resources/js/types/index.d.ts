@@ -5,6 +5,14 @@ export interface User {
   name: string;
   email: string;
   email_verified_at?: string;
+  stripe_account_active: boolean;
+  vendor: {
+    status: string;
+    status_label: string;
+    store_name: string;
+    store_address: string;
+    cover_image: string;
+  };
 }
 
 export type PageProps<
@@ -18,7 +26,7 @@ export type PageProps<
   totalPrice: number;
   totalQuantity: number;
   miniCartItems: CartItem[];
-  success: [message: string, time: number];
+  success: { message: string; time: number };
   error: string;
   error: string;
 };

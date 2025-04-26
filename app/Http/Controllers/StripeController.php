@@ -36,6 +36,7 @@ class StripeController extends Controller
         }
         return Inertia::render('Stripe/Success', ["orders" => OrderViewResource::collection($orders)->collection->toArray()]);
     }
+
     public function failure()
     {
 
@@ -143,6 +144,19 @@ class StripeController extends Controller
         }
 
         return response('', 200);
+    }
+
+    public function connect()
+    {
+        if(!AUTH()->user()->getStripAccountId()){
+            auth()->user()->createStripeAccount(['type' => 'express']);
+        }
+
+        if(!auth()->user()->isStripeAccountActive()){
+            return redirect(auth()->user()->getStripeAccountLink());
+        }
+
+        return back()->with('success', 'Your account is already connected.');
     }
 
 }

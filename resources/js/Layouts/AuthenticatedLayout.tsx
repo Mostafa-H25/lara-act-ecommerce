@@ -1,12 +1,6 @@
 import Navbar from '@/Components/App/Navbar';
 import { usePage } from '@inertiajs/react';
-import {
-  PropsWithChildren,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { PropsWithChildren, ReactNode, useEffect, useState } from 'react';
 
 export default function AuthenticatedLayout({
   children,
@@ -15,17 +9,18 @@ export default function AuthenticatedLayout({
   const [successMessages, setSuccessMessages] = useState<
     { message: string; time: number; id: number }[]
   >([]);
-  const timeoutRefs = useRef<{ [key: number]: ReturnType<typeof setTimeout> }| null>(
-    null
-  );
+  // const timeoutRefs = useRef<{
+  //   [key: number]: ReturnType<typeof setTimeout>;
+  // } | null>(null);
 
   useEffect(() => {
-    let timeoutId:NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
 
     if (props.success.message) {
       const newMessage = {
-        ...props.success,
-        id: props.success.time as number,
+        message: props.success?.message,
+        time: props.success?.time,
+        id: props.success?.time,
       };
       setSuccessMessages((prev) => [newMessage, ...prev]);
 
@@ -33,14 +28,14 @@ export default function AuthenticatedLayout({
         setSuccessMessages((prev) =>
           prev.filter((msg) => msg.id !== newMessage.id),
         );
-        
-        timeoutRefs?.current?[newMessage.id] = null;
-        }, 5000);
 
-        timeoutRefs.current[newMessage.id] = timeoutId;
+        // timeoutRefs?.current?[newMessage.id] = null;
+      }, 5000);
+
+      // timeoutRefs.current[newMessage.id] = timeoutId;
     }
 
-    return ()=> clearTimeout(timeoutId);
+    return () => clearTimeout(timeoutId);
   }, [props.success]);
 
   return (
@@ -54,12 +49,12 @@ export default function AuthenticatedLayout({
       )}
 
       {successMessages.length > 0 && (
-        <div className="toast toast-top toast-end z-[1000] mt-16">
-          {successMessages.map((msg => (
+        <div className="toast toast-end toast-top z-[1000] mt-16">
+          {successMessages.map((msg) => (
             <div key={msg.id} className="alert alert-success">
               <span>{msg.message}</span>
             </div>
-          )))}
+          ))}
         </div>
       )}
 

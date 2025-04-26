@@ -123,7 +123,8 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
     "currency" => env('APP_CURRENCY', 'AED'),
-    "stripe_secret_key" => env('STRIPE_KEY'),
+    "stripe_public_key" => env('STRIPE_KEY'),
+    "stripe_secret_key" => env('STRIPE_SECRET'),
     "stripe_webhook_secret_key" => env('STRIPE_WEBHOOK_KEY'),
     'platform_free_pct' => 10
 

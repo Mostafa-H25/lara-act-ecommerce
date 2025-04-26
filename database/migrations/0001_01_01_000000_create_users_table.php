@@ -18,6 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string("stripe_account_ids")->nullable();
+            $table->boolean("stripe_account_active")->default(false);
             $table->timestamps();
         });
 

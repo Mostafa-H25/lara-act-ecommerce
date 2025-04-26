@@ -1,9 +1,11 @@
 <?php
 
+use App\Enum\RolesEnum;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, "home"])->name("dashboard");
@@ -27,9 +29,14 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware("verified")->group(function() {
         Route::post("/cart/checkout", [CartController::class, "checkout"])->name("cart.checkout");
-
+        
         Route::get("/stripe/success", [StripeController::class, 'success'])->name('stripe.success');
         Route::get("/stripe/failure", [StripeController::class, 'failure'])->name('stripe.failure');
+        Route::post("/stripe/connect", [StripeController::class, 'connect'])->name('stripe.connect')
+        ->middleware(['role:'.RolesEnum::Vendor->value]);
+        
+        Route::post("/become-a-vendor", [VendorController::class, "store"])->name("cart.store");
+
     });
 });
 
