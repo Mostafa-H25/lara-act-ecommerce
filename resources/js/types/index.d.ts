@@ -10,10 +10,35 @@ export interface User {
 export type PageProps<
   T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
+  csrf_token: string;
   auth: {
     user: User;
   };
   ziggy: Config & { location: string };
+  totalPrice: number;
+  totalQuantity: number;
+  miniCartItems: CartItem[];
+  success: [message: string, time: number];
+  error: string;
+  error: string;
+};
+
+export type CartItem = {
+  id: number;
+  product_id: number;
+  name: string;
+  slug: string;
+  price: number;
+  quantity: number;
+  image: string;
+  option_ids: Record<string, number>;
+  options: VariationTypeOption[];
+};
+export type GroupedCartItem = {
+  user: User;
+  totalPrice: number;
+  totalQuantity: number;
+  items: CartItem[];
 };
 
 export type VariationTypeOption = {
@@ -66,4 +91,33 @@ export type Image = {
   thumb: string;
   small: string;
   large: string;
+};
+
+export type orderItem = {
+  id: number;
+  quantity: number;
+  price: number;
+  variation_type_option_ids: number[];
+  product: {
+    id: number;
+    title: string;
+    slug: string;
+    description: string;
+    image: string;
+  };
+};
+
+export type Order = {
+  id: number;
+  total_price: number;
+  status: string;
+  created_at: string;
+  orderItems: OrderItem[];
+  vendorUser: {
+    id: string;
+    name: string;
+    email: string;
+    store_name: string;
+    store_address: string;
+  };
 };

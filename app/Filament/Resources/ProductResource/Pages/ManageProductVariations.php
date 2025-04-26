@@ -113,7 +113,6 @@ class ManageProductVariations extends EditRecord
       ->toArray();
       
       $match = array_filter($existingData, function ($existingOption) use($optionIds){
-        // dd($existingOption);
         
         return $existingOption["variation_type_option_ids"] === $optionIds;
       });
@@ -162,7 +161,6 @@ class ManageProductVariations extends EditRecord
           $combination["price"] = $defaultPrice;
         };
       }
-      // dd($result);
 
     return $result;
   }

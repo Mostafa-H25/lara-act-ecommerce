@@ -15,11 +15,9 @@ const Show = ({
   const form = useForm<{
     option_ids: Record<string, number>;
     quantity: number;
-    price: number | null;
   }>({
     option_ids: {},
     quantity: 1,
-    price: null,
   });
 
   const { url } = usePage();
@@ -85,6 +83,7 @@ const Show = ({
         ...prev,
         [typeId]: option,
       };
+      form.setData('option_ids', getOptionIdsMap(newOptions));
 
       if (updateRouter) {
         router.get(
@@ -189,11 +188,6 @@ const Show = ({
     form.setData('option_ids', idsMap);
   }, []);
 
-  console.log(product);
-  // console.log(selectedOptions);
-  // console.log(variationOptions);
-  // console.log(product.variations);
-  console.log(computedProduct);
   return (
     <AuthenticatedLayout>
       <Head title={product.name} />

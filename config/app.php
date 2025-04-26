@@ -122,5 +122,9 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    "currency" => env('APP_CURRENCY', 'AED'),
+    "stripe_secret_key" => env('STRIPE_KEY'),
+    "stripe_webhook_secret_key" => env('STRIPE_WEBHOOK_KEY'),
+    'platform_free_pct' => 10
 
 ];
